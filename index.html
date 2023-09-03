@@ -1,33 +1,139 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <title>DukanDekho</title>
+    <meta name="description" content="A resource to help developers evaluate and use Flutter.">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Browser meta tags & icons -->
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="gallery">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <link rel="icon" type="image/png" href="Icon-192.png" sizes="32x32" />
+
+
+     <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HBB5H8CECM');
+  </script>
+
+    <!-- Renderer specifier -->
+    <script>
+    let searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has('renderer')) {
+      window.flutterWebRenderer = searchParams.get('renderer');
+      console.log(searchParams.get('renderer') + ' renderer requested in the URL');
+    }
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = "3229739441";
+  </script>
+
+    <script src="flutter.js" defer></script>
+</head>
+
+<body>
+<style>
+    body {
+      background-color: #030303;
+    }
+  </style>
+
+<!-- Cookie notice -->
+<div>
+
+
+</div>
+
+
+<!-- Background -->
+<style>
+    body.light {
+      background-color: #E6EBEB;
+    }
+
+    body.dark {
+      background-color: #241E30;
+    }
+  </style>
+<script>
+    var queryParams = new URLSearchParams(window.location.search);
+
+    // Set the theme from the URL param, with fallback to user preference if no theme is
+    // specified.
+    var theme = queryParams.get("brightness");
+    theme ||= window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+    document.body.classList.add(theme);
+  </script>
+
+<!-- Loading indicator -->
+<div id="loading">
     <style>
+      body {
+        inset: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        position: fixed;
+      }
 
-        /* Add these styles to your existing CSS file */
+      #loading {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        width: 100%;
+      }
 
-           .animation-container {
-               display: flex;
-               justify-content: center;
-               align-items: center;
-               height: 100vh;
-               background-color: #f0f0f0;
+      #loading img {
+              animation: rotateLogo 0.6s ease-in-out both
 
-           }
 
-           .logo-container {
-             animation: rotate-center 0.6s ease-in-out both
-           }
+      }
 
-           .text-container {
+      #loading.main_done img {
+        opacity: 1;
+      }
+
+      #loading.init_done img {
+        animation: .33s ease-in-out 0s 1 forwards zooooom;
+        opacity: .05;
+      }
+
+      @keyframes breathe {
+        from {
+          transform: scale(1)
+        }
+
+        to {
+          transform: scale(0.95)
+        }
+      }
+
+      @keyframes zooooom {
+        from {
+          transform: scale(1)
+        }
+
+        to {
+          transform: scale(0.01)
+        }
+      }
+
+
+           .text_container {
 
                animation: revealText 1s ease-in-out 1s forwards;
                opacity: 0;
-           }
-
-           .logo {
-               width: 100px; /* Adjust the width as needed */
-               height: auto;
-
            }
 
            .text {
@@ -38,16 +144,7 @@
 
             font-size: 24px; /* Adjust the font size as needed */
            }
-           @keyframes rotate-center {
-             0% {
-               -webkit-transform: rotate(0);
-                       transform: rotate(0);
-             }
-             100% {
-               -webkit-transform: rotate(360deg);
-                       transform: rotate(360deg);
-             }
-           }
+
            @keyframes rotateLogo {
                0% {
                    transform: rotate(0deg);
@@ -66,20 +163,7 @@
                    opacity: 1;
 
                }
-           }keyframes rotate-scale-up {
-              0% {
-                -webkit-transform: scale(1) rotateZ(0);
-                        transform: scale(1) rotateZ(0);
-              }
-              50% {
-                -webkit-transform: scale(2) rotateZ(180deg);
-                        transform: scale(2) rotateZ(180deg);
-              }
-              100% {
-                -webkit-transform: scale(1) rotateZ(360deg);
-                        transform: scale(1) rotateZ(360deg);
-              }
-            }
+           }
            @font-face {
                         font-family: 'RionaSans';
                         src: url('assets/font/Riona.ttf') format('truetype');
@@ -98,102 +182,16 @@
                         opacity: 1;
                       }
                     }
-           @keyframes shiftLeft {
-                        0% {
-                            transform: translateX(0);
-                        }
-                        100% {
-                            transform: translateX(-50%); /* Shift to the left by half the container width */
-                        }
-                    }
-    </style>
-   <!-- <style>
+            @keyframes fadeOut {
+              0% { opacity: 1; }
+              100% { opacity: 0; }
+            }
 
-
-
-
-          body {
-              margin: 0;
-              padding: 0;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100vh;
-              background-color: #f0f0f0;
-          }
-
-          .container {
-              position: relative;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-          }
-
-          .logo-container {
-              width: 200px;
-              height: 200px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              animation: rotate-scale-up 1s ease-in-out forwards;
-          }
-
-          .logo {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              position: relative;
-
-          }
-
-          .logo-image {
-              max-width: 50%; /* Adjust the width percentage as needed */
-               max-height: 50%; /* Adjust the height percentage as needed */
-               align-items: center;
-
-
-          }
-
-
-
-          @keyframes rotateLogo {
-              0% {
-                  transform: rotate(0deg);
-              }
-              100% {
-                  transform: rotate(360deg);
-              }
-          }
-
-          @keyframes shiftLeft {
-              0% {
-                  transform: translateX(0);
-              }
-              100% {
-                  transform: translateX(-50%); /* Shift to the left by half the container width */
-              }
-          }
-
-         @keyframes fadeIn {
-             0% {
-                 opacity: 0;
-             }
-             100% {
-                 opacity: 1;
-             }
-         }
-
-        .logo-text {
-            opacity: 0;
-            font-size: 24px;
-            font-family: 'RionaSans', sans-serif;
-            animation: tracking-in-expand 1s ease-in-out forwards;
-            animation-delay: 1s; /* Adjust this delay as needed */
-        }
-
-            @keyframes rotate-scale-up {
+            /* Apply the fadeOut animation to the text with a duration of 1 second */
+            #textElement.removing {
+              animation: fadeOut 1s;
+            }
+             @keyframes rotate-scale-up {
               0% {
                 -webkit-transform: scale(1) rotateZ(0);
                         transform: scale(1) rotateZ(0);
@@ -209,116 +207,43 @@
             }
 
 
-        @keyframes rotateLogo {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+    </style>
+    <img src="icons/Icon-192.png" alt="Loading indicator..." width="100" />
 
-        @keyframes revealText {
-            0% {
-                width: 0;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-
-
-
-         @keyframes tracking-in-expand {
-           0% {
-             letter-spacing: -0.5em;
-             opacity: 0;
-           }
-           40% {
-             opacity: 0.6;
-           }
-           100% {
-             opacity: 1;
-           }
-         }
-
-
-
-
-    </style>-->
-
-
-    <!--
-      If you are serving your web app in a path other than the root, change the
-      href value below to reflect the base path you are serving from.
-
-      The path provided below has to start and end with a slash "/" in order for
-      it to work correctly.
-
-      For more details:
-      * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-      This is a placeholder for base href that will be replaced by the value of
-      the `--base-href` argument provided to `flutter build`.
-    -->
-    <base href="/">
-
-    <meta charset="UTF-8">
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta name="description" content="A new Flutter project.">
-
-    <!-- iOS meta tags & icons -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="shopping_k">
-    <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="icons/icon_192_min.png"/>
-
-    <title>DukanDekho</title>
-    <link rel="manifest" href="manifest.json">
-
-    <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "4058571003";
-
-
-    </script>
-    <!-- This script adds the flutter initialization JS code -->
-    <script src="flutter.js" defer></script>
-</head>
-<body>
-<div class="animation-container">
-    <div class="animation-container">
-        <div class="logo-container">
-            <img src="icons/icon_192_min.png" alt="Logo">
-        </div>
-        <div class="text-container">
-            <div class="text">DukanDekho</div>
-        </div>
+    <div class="text-container">
+        <div id="textElement" class="text">DukanDekho</div>
     </div>
-
-
 </div>
-
-
 <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
+   var textElement = document.getElementById("textElement");
+    window.addEventListener('load', function () {
+      var loading = document.querySelector('#loading');
+
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
         }
+      }).then(function (engineInitializer) {
+        loading.classList.add('main_done');
+        return engineInitializer.initializeEngine();
+      }).then(function (appRunner) {
+        loading.classList.add('init_done');
+        return appRunner.runApp();
+      }).then(function (app) {
+        // Wait a few milliseconds so users can see the "zoooom" animation
+        // before getting rid of the "loading" div.
+         textElement.remove();
+        window.setTimeout(function () {
+          loading.remove();
+
+
+
+        }, 200);
       });
     });
+  </script>
 
-
-</script>
+<!-- App -->
 </body>
+
 </html>
