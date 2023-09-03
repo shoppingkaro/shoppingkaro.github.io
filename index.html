@@ -33,7 +33,7 @@
       console.log(searchParams.get('renderer') + ' renderer requested in the URL');
     }
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "3229739441";
+    var serviceWorkerVersion = null;
   </script>
 
     <script src="flutter.js" defer></script>
@@ -42,7 +42,7 @@
 <body>
 <style>
     body {
-      background-color: #030303;
+      background-color: #2873F0;
     }
   </style>
 
@@ -53,7 +53,7 @@
 </div>
 
 
-<!-- Background -->
+<!-- Background
 <style>
     body.light {
       background-color: #E6EBEB;
@@ -62,7 +62,7 @@
     body.dark {
       background-color: #241E30;
     }
-  </style>
+  </style>-->
 <script>
     var queryParams = new URLSearchParams(window.location.search);
 
@@ -141,6 +141,8 @@
             font-size: 24px;
             font-family: 'RionaSans', sans-serif;
             animation: tracking-in-expand 1s ease-in-out forwards;
+             color: #FFFFFFFF;
+
 
             font-size: 24px; /* Adjust the font size as needed */
            }
