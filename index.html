@@ -33,7 +33,7 @@
       console.log(searchParams.get('renderer') + ' renderer requested in the URL');
     }
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
+    const serviceWorkerVersion = "3940945943";
   </script>
 
     <script src="flutter.js" defer></script>
@@ -139,7 +139,7 @@
            .text {
              opacity: 1;
             font-size: 24px;
-            font-family: 'RionaSans';
+            font-family: 'RionaSans', sans-serif;
             animation: tracking-in-expand 1s ease-in-out forwards;
              color: #FFFFFFFF;
 
@@ -168,7 +168,7 @@
            }
            @font-face {
                         font-family: 'RionaSans';
-                        src: url('assets/assets/font/Riona.ttf') format('truetype');
+                        src: url('assets/font/Riona.ttf') format('truetype');
                         font-weight: normal;
                         font-style: normal;
                     }
